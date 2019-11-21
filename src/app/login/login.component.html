@@ -1,0 +1,18 @@
+<section fxLayout="column" fxLayoutAlign="center center">
+    <form [formGroup]="loginForm" fxLayout="column" fxLayoutGap="10px" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+            <input matInput type="text" placeholder="Nombre del usuario" formControlName="userName">
+            <mat-error *ngIf="userName.hasError('required')">El nombre del usuario es <strong>obligatoria</strong></mat-error>
+            <mat-error *ngIf="userName.hasError('minlength')">Son necesarios <strong>3 caracteres mínimo</strong></mat-error>
+            <mat-error *ngIf="userName.hasError('containSpace')">El nombre del usuario no puede contener <strong>espacios</strong></mat-error>
+            <mat-error *ngIf="userName.hasError('maxlength')">Máximo 20 caracteres</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="password" placeholder="Tu password" formControlName="userPassword">
+            <mat-error *ngIf="userPassword.hasError('required')">La contraseña es <strong>obligatoria</strong></mat-error>
+            <mat-error *ngIf="userPassword.hasError('minlength')">Son necesarios <strong>6 caracteres mínimo</strong></mat-error>
+            <mat-error *ngIf="userPassword.hasError('maxlength')">Máximo 20 caracteres</mat-error>
+        </mat-form-field>
+        <button type="submit" mat-raised-button color="primary" [disabled]="!loginForm.valid">Entrar</button>
+    </form>
+</section>
