@@ -62,4 +62,22 @@ describe('LoginComponent', () => {
     expect(controlName.invalid).toBeTruthy();
   });
 
+  it('Debería tener un maximo de 20 caracteres el nombre del usuario', () => {
+    const controlName = component.loginForm.get('userName');
+
+    controlName.setValue('123456789012345678901');
+
+    expect(controlName.hasError('maxlength')).toBeTruthy();
+    expect(controlName.invalid).toBeTruthy();
+  });
+
+  it('Debería tener un minimo de 6 caracteres el password del usuario', () => {
+    const controlPassword = component.loginForm.get('userPassword');
+
+    controlPassword.setValue('12345');
+
+    expect(controlPassword.hasError('minlength')).toBeTruthy();
+    expect(controlPassword.invalid).toBeTruthy();
+  });
+
 });
